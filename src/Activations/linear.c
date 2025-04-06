@@ -4,7 +4,9 @@
 #include "../../include/Core/error_codes.h"
 #include "../../include/Activations/linear.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Applies the Linear (identity) activation function.
@@ -25,7 +27,7 @@ float linear(float x)
 
     float result = x;
 #if DEBUG_LOGGING
-    printf("[linear] Input: x=%f, Output: %f\n", x, result);
+    printf("[linear] Debug: Input: x=%f, Output: %f\n", x, result);
 #endif
     return result;
 }

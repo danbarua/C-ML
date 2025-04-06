@@ -3,7 +3,9 @@
 #include "../../include/Optimizers/rmsprop.h"
 #include "../../include/Core/error_codes.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Performs the RMSProp optimization algorithm.
@@ -57,7 +59,7 @@ float rms_prop(float x, float y, float lr, float *w, float *b, float *cache_w, f
     *b -= lr * (db / (sqrt(*cache_b) + epsilon));
 
 #if DEBUG_LOGGING
-    printf("[rms_prop] w: %f, b: %f, loss: %f\n", *w, *b, loss);
+    printf("[rms_prop] Debug: w: %f, b: %f, loss: %f\n", *w, *b, loss);
 #endif
 
     return loss;

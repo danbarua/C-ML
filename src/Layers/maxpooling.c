@@ -3,7 +3,9 @@
 #include "../../include/Layers/maxpooling.h"
 #include "../../include/Core/error_codes.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Initializes a MaxPooling Layer.
@@ -130,7 +132,7 @@ int forward_maxpooling(MaxPoolingLayer *layer, const float *input, float *output
         output[output_index++] = max_value;
 
 #if DEBUG_LOGGING
-        printf("[forward_maxpooling] Output[%d]: %f\n", output_index - 1, max_value);
+        printf("[forward_maxpooling] Debug: Output[%d]: %f\n", output_index - 1, max_value);
 #endif
     }
 

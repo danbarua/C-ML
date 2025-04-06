@@ -3,7 +3,9 @@
 #include "../../include/Optimizers/sgd.h"
 #include "../../include/Core/error_codes.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Performs the Stochastic Gradient Descent (SGD) optimization algorithm.
@@ -45,7 +47,7 @@ float sgd(float x, float y, float lr, float *w, float *b)
     (*b) -= lr * db;
 
 #if DEBUG_LOGGING
-    printf("[sgd] w: %f, b: %f, loss: %f\n", *w, *b, loss);
+    printf("[sgd] Debug: w: %f, b: %f, loss: %f\n", *w, *b, loss);
 #endif
 
     return loss;

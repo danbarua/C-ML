@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include "../../include/Core/memory_management.h"
 #include "../../include/Core/error_codes.h"
+#include "../../include/Core/logging.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Allocates memory safely and logs the file and line number in case of failure.
@@ -21,11 +24,11 @@ void *cm_safe_malloc(size_t size, const char *file, int line)
     void *ptr = malloc(size);
     if (ptr == NULL)
     {
-        fprintf(stderr, "Memory allocation failed for %zu bytes in %s at line %d\n", size, file, line);
+        LOG_ERROR("Memory allocation failed for %zu bytes in %s at line %d.", size, file, line);
         return (void *)CM_MEMORY_ALLOCATION_ERROR;
     }
 #if DEBUG_LOGGING
-    printf("Allocated %zu bytes at %p in %s at line %d\n", size, ptr, file, line);
+    LOG_DEBUG("Allocated %zu bytes at %p in %s at line %d.", size, ptr, file, line);
 #endif
     return ptr;
 }
@@ -44,7 +47,7 @@ void cm_safe_free(void **ptr)
     if (ptr != NULL && *ptr != NULL)
     {
 #if DEBUG_LOGGING
-        printf("Freeing memory at %p\n", *ptr);
+        LOG_DEBUG("Freeing memory at %p", *ptr);
 #endif
         free(*ptr);
         *ptr = NULL;

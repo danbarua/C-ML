@@ -3,7 +3,9 @@
 #include "../../include/Optimizers/adam.h"
 #include "../../include/Core/error_codes.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Performs the Adam optimization algorithm.
@@ -62,7 +64,7 @@ float adam(float x, float y, float lr, float *w, float *b, float *v_w, float *v_
     *b -= lr * v_b_corrected / (sqrt(s_b_corrected + epsilon));
 
 #if DEBUG_LOGGING
-    printf("[adam] w: %f, b: %f, loss: %f\n", *w, *b, loss);
+    printf("[adam] Debug: w: %f, b: %f, loss: %f\n", *w, *b, loss);
 #endif
 
     return loss;

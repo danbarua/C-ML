@@ -5,7 +5,9 @@
 #include "../../include/Core/error_codes.h"
 
 #define TANH_THRESHOLD 20.0f
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Applies the hyperbolic tangent (tanh) activation function.
@@ -31,14 +33,14 @@ float tanH(float x)
     if (x > TANH_THRESHOLD)
     {
 #if DEBUG_LOGGING
-        printf("[tanh] Input: x=%f, Output: 1.0 (clipped)\n", x);
+        printf("[tanh] Debug: Input: x=%f, Output: 1.0 (clipped)\n", x);
 #endif
         return 1.0f;
     }
     else if (x < -TANH_THRESHOLD)
     {
 #if DEBUG_LOGGING
-        printf("[tanh] Input: x=%f, Output: -1.0 (clipped)\n", x);
+        printf("[tanh] Debug: Input: x=%f, Output: -1.0 (clipped)\n", x);
 #endif
         return -1.0f;
     }
@@ -48,7 +50,7 @@ float tanH(float x)
         float e_neg = expf(-x);
         float result = (e_pos - e_neg) / (e_pos + e_neg);
 #if DEBUG_LOGGING
-        printf("[tanh] Input: x=%f, Output: %f\n", x, result);
+        printf("[tanh] Debug: Input: x=%f, Output: %f\n", x, result);
 #endif
         return result;
     }

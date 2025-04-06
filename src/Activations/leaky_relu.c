@@ -5,7 +5,9 @@
 #include "../../include/Activations/leaky_relu.h"
 
 #define LEAKY_RELU_ALPHA 0.01f
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Applies the Leaky Rectified Linear Unit (Leaky ReLU) activation function.
@@ -27,7 +29,7 @@ float leaky_relu(float x)
 
    float result = x > 0 ? x : LEAKY_RELU_ALPHA * x;
 #if DEBUG_LOGGING
-   printf("[leaky_relu] Input: x=%f, Output: %f\n", x, result);
+   printf("[leaky_relu] Debug: Input: x=%f, Output: %f\n", x, result);
 #endif
    return result;
 }

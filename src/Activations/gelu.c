@@ -4,7 +4,9 @@
 #include "../../include/Activations/gelu.h"
 #include "../../include/Core/error_codes.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Applies the Gaussian Error Linear Unit (GELU) activation function.
@@ -26,7 +28,7 @@ float gelu(float x)
     const float sqrt_2_over_pi = 0.7978845608f;
     float result = 0.5f * x * (1.0f + tanhf(sqrt_2_over_pi * (x + 0.044715f * x * x * x)));
 #if DEBUG_LOGGING
-    printf("[gelu] Input: x=%f, Output: %f\n", x, result);
+    printf("[gelu] Debug: Input: x=%f, Output: %f\n", x, result);
 #endif
     return result;
 }

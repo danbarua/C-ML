@@ -5,7 +5,9 @@
 #include "../../include/Core/error_codes.h"
 #include "../../include/Core/memory_management.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Scales an array of floats to a range of [0, 1] using min-max scaling.
@@ -60,11 +62,11 @@ float *min_max_scaler(float *x, int size)
     {
         scaled[i] = (x[i] - min) / (max - min);
 #if DEBUG_LOGGING
-        printf("[minMaxScaler] Scaled[%d]: %f\n", i, scaled[i]);
+        printf("[minMaxScaler] Debug: Scaled[%d]: %f\n", i, scaled[i]);
 #endif
     }
 #if DEBUG_LOGGING
-    printf("[minMaxScaler] Scaling complete.\n");
+    printf("[minMaxScaler] Debug: Scaling complete.\n");
 #endif
     return scaled;
 }

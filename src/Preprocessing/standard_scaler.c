@@ -5,7 +5,9 @@
 #include "../../include/Core/error_codes.h"
 #include "../../include/Core/memory_management.h"
 
+#ifndef DEBUG_LOGGING
 #define DEBUG_LOGGING 0
+#endif
 
 /**
  * @brief Scales an array of floats to have a mean of 0 and a standard deviation of 1.
@@ -65,11 +67,11 @@ float *standard_scaler(float *x, int size)
     {
         scaled[i] = (x[i] - mean) / std;
 #if DEBUG_LOGGING
-        printf("[standardScaler] Scaled[%d]: %f\n", i, scaled[i]);
+        printf("[standardScaler] Debug: Scaled[%d]: %f\n", i, scaled[i]);
 #endif
     }
 #if DEBUG_LOGGING
-    printf("[standardScaler] Scaling complete.\n");
+    printf("[standardScaler] Debug: Scaling complete.\n");
 #endif
     return scaled;
 }
